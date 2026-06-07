@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imgs/lab.ico</file>
+        <file>imgs/logo-lema.png</file>
+    </qresource>
+</RCC>

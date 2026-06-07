@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.19)
 project(refactor-chrono-golf LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Sql Multimedia)
+
+set(CMAKE_AUTORCC ON)
 
 qt_standard_project_setup()
 
@@ -11,12 +13,20 @@ qt_add_executable(refactor-chrono-golf
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    recursos.qrc
+    modosgamewidget.h modosgamewidget.cpp
+    authwidget.h authwidget.cpp
+    portadawidget.h portadawidget.cpp
+    gestorbasedatos.h gestorbasedatos.cpp
+
 )
 
 target_link_libraries(refactor-chrono-golf
     PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt::Sql
+        Qt6::Multimedia
 )
 
 install(TARGETS refactor-chrono-golf

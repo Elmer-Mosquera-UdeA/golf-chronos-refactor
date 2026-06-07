@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+//Base de datos
+#include "gestorbasedatos.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,5 +22,20 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    GestorBaseDatos gestorBD;
+
+    enum class Pagina
+    {
+        Portada = 0,
+        Login,
+        Registro,
+        ModosJuego
+    };
+
+    constexpr int page(Pagina p) const
+    {
+        return static_cast<int>(p);
+    }
 };
 #endif // MAINWINDOW_H
