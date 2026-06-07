@@ -18,6 +18,7 @@ qt_add_executable(refactor-chrono-golf
     authwidget.h authwidget.cpp
     portadawidget.h portadawidget.cpp
     gestorbasedatos.h gestorbasedatos.cpp
+    juego.h juego.cpp
 
 )
 

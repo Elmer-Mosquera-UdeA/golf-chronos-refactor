@@ -2,5 +2,19 @@
     <qresource prefix="/">
         <file>imgs/lab.ico</file>
         <file>imgs/logo-lema.png</file>
+        <file>imgs/preview-md-uno.png</file>
+        <file>imgs/preview-md-dos.png</file>
+        <file>recursos.qrc</file>
+        <file>imgs/agente-moviendose.png</file>
+        <file>imgs/grieta-sprite.png</file>
+        <file>imgs/new-agente-c-grieta.png</file>
+        <file>imgs/pendulo.png</file>
+        <file>imgs/personaje-bateando.png</file>
+        <file>imgs/pixel-art-chronoa-para-laverinto.png</file>
+        <file>imgs/portal-mini-golf.png</file>
+        <file>imgs/prataforma-impulsora.png</file>
+        <file>imgs/rueda_pinchos.png</file>
+        <file>imgs/tierra-minigolf.png</file>
+        <file>imgs/libros-para-laberinto.png</file>
     </qresource>
 </RCC>

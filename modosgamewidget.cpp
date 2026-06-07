@@ -114,7 +114,7 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
     btnJuegoUno->setMinimumSize(400, 400);
 
     btnJuegoUno->setStyleSheet(R"(
-        // border-image: url(:/resources/imgs/mini-mod-1.png) 0 0 0 0 stretch stretch;
+        border-image: url(:/imgs/preview-md-uno.png) 0 0 0 0 stretch stretch;
     )");
 
     modo1Layout->addWidget(lblModo1);
@@ -134,8 +134,7 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
     btnJuegoDos->setMinimumSize(400, 400);
 
     btnJuegoDos->setStyleSheet(R"(
-        border-image: url(:/resources/imgs/mini-mod-2.png)
-                      0 0 0 0 stretch stretch;
+        border-image: url(:/imgs/preview-md-dos.png) 0 0 0 0 stretch stretch;
     )");
 
     modo2Layout->addWidget(lblModo2);
