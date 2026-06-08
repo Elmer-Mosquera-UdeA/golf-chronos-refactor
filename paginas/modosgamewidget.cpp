@@ -9,9 +9,6 @@
 ModosGameWidget::ModosGameWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setMinimumSize(700, 900);
-    resize(1120, 900);
-
     setStyleSheet(R"(
         /* ModosGameWidget{
             border-image: url(:/resources/imgs/fondo_oscuro.png)

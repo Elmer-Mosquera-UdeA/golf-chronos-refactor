@@ -86,3 +86,8 @@ CMakeLists.txt.user*
 # obsidian
 
 .obsidian/
+
+
+# Clion
+
+.idea/

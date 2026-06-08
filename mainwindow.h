@@ -1,10 +1,10 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
+
 
 #include <QMainWindow>
 
 //Base de datos
-#include "gestorbasedatos.h"
+#include "persistencia/gestorbasedatos.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,7 +30,8 @@ private:
         Portada = 0,
         Login,
         Registro,
-        ModosJuego
+        ModosJuego,
+        GameWidget
     };
 
     constexpr int page(Pagina p) const
@@ -38,4 +39,3 @@ private:
         return static_cast<int>(p);
     }
 };
-#endif // MAINWINDOW_H

@@ -4,19 +4,23 @@
 
 // Alertas
 #include <QMessageBox>
-
-//subvistas
-#include "portadawidget.h"
-#include "authwidget.h"
 #include <QPushButton>
-#include "modosgamewidget.h"
 
-#include "gestorbasedatos.h"
+//subVistas
+#include "paginas/portadawidget.h"
+#include "paginas/authwidget.h"
+#include "paginas/modosgamewidget.h"
+
+// Base Datos
+#include "persistencia/gestorbasedatos.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    setMinimumSize(1000, 800);
+    resize(1200, 900);
+
     ui->setupUi(this);
 
     if (!gestorBD.conectarBD()) {

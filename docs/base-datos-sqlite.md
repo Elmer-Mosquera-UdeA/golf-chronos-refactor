@@ -27,7 +27,7 @@ El proceso para entrar al universo de Chronos es directo: el usuario interactúa
 
 El siguiente diagrama muestra cómo la autenticación abre el camino hacia las dos realidades del juego:
 
-Fragmento de código
+
 
 ```mermaid
 flowchart TD

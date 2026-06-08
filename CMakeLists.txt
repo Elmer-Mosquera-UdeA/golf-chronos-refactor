@@ -14,12 +14,23 @@ qt_add_executable(refactor-chrono-golf
     mainwindow.h
     mainwindow.ui
     recursos.qrc
-    modosgamewidget.h modosgamewidget.cpp
-    authwidget.h authwidget.cpp
-    portadawidget.h portadawidget.cpp
-    gestorbasedatos.h gestorbasedatos.cpp
-    juego.h juego.cpp
+        paginas/modosgamewidget.h paginas/modosgamewidget.cpp
+        paginas/authwidget.h paginas/authwidget.cpp
+        paginas/portadawidget.h paginas/portadawidget.cpp
+        persistencia/gestorbasedatos.h persistencia/gestorbasedatos.cpp
 
+        # Interface del juego
+        paginas/gamewidget.cpp paginas/gamewidget.h # Contenenedor
+        paginas/ui-game/topbarwidget.cpp paginas/ui-game/topbarwidget.h
+        paginas/ui-game/eventlogwidget.cpp paginas/ui-game/eventlogwidget.h
+        game/levelmanager.cpp
+        game/levelmanager.h
+        game/scenes/nivel1scene.cpp
+        game/scenes/nivel1scene.h
+        paginas/ui-game/basehud.h paginas/ui-game/basehud.cpp
+        paginas/ui-game/level1hud.h paginas/ui-game/level1hud.cpp
+        paginas/ui-game/level1hud.h paginas/ui-game/level1hud.cpp
+        paginas/ui-game/level2hud.h paginas/ui-game/level2hud.cpp
 )
 
 target_link_libraries(refactor-chrono-golf

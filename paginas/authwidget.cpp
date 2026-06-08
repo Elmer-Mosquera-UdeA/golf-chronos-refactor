@@ -11,9 +11,6 @@
 AuthWidget::AuthWidget(const QString &titulo, QWidget *parent)
     : QWidget(parent)
 {
-    setMinimumSize(700, 900);
-    resize(1200, 900);
-
     setStyleSheet(R"(
 
         /* AuthWidget{
