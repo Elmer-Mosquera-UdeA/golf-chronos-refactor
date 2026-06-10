@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QWidget>
+#include <QLabel>
+#include <QString>
 
 class EventLogWidget : public QWidget
 {
@@ -8,4 +10,9 @@ class EventLogWidget : public QWidget
 
 public:
     EventLogWidget(QWidget *parent = nullptr);
+    void enviarNotificacion(QString m);
+    void enviarAlerta(QString m);
+
+private:
+    QLabel *mensajeCinta;
 };

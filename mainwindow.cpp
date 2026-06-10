@@ -10,6 +10,8 @@
 #include "paginas/portadawidget.h"
 #include "paginas/authwidget.h"
 #include "paginas/modosgamewidget.h"
+#include "paginas/gamewidget.h"
+#include "paginas/ui-game/topbarwidget.h"
 
 // Base Datos
 #include "persistencia/gestorbasedatos.h"
@@ -39,11 +41,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ModosGameWidget *modosJuego = new ModosGameWidget(this);
 
+    GameWidget *contenedorJuego = new GameWidget(this);
 
     vistaActual->addWidget(portada);
     vistaActual->addWidget(login);
     vistaActual->addWidget(registro);
     vistaActual->addWidget(modosJuego);
+    vistaActual->addWidget(contenedorJuego);
 
 
     // Portada -> Login
@@ -60,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Login -> Modos de juego
     connect(login->btnContinuar,&QPushButton::clicked,this,
-        [=, this]()
+        [=,this]()
             {
                 ResultadoAuth res = gestorBD.login(
                     login->usuario(),
@@ -127,6 +131,47 @@ MainWindow::MainWindow(QWidget *parent)
                 vistaActual->setCurrentIndex(
                     page(Pagina::Portada)
                     );
+            });
+
+    // Jugar modo 1
+
+    connect(modosJuego->btnJuegoUno,&QPushButton::clicked,this,
+        [=, this]()
+            {
+                contenedorJuego->loadLevel(1);
+                vistaActual->setCurrentIndex(page(Pagina::GameWidget));
+                juegoActivo = true;
+            });
+
+
+    // Jugar modo 2
+
+    connect(modosJuego->btnJuegoDos,&QPushButton::clicked,this,
+            [=, this]()
+            {
+                contenedorJuego->loadLevel(2);
+                vistaActual->setCurrentIndex(page(Pagina::GameWidget));
+                juegoActivo = true;
+            });
+
+    // Volver desde el juego al menú de modos
+
+    connect(contenedorJuego->topBar->btnVolver, &QPushButton::clicked, this,
+            [=, this]()
+            {
+                contenedorJuego->endGame();
+                vistaActual->setCurrentIndex(page(Pagina::ModosJuego));
+            });
+
+    // Limpieza automática al salir de GameWidget por cualquier ruta
+
+    connect(vistaActual, &QStackedWidget::currentChanged, this,
+            [=, this](int index)
+            {
+                if (vistaActual->widget(index) != contenedorJuego && juegoActivo) {
+                    contenedorJuego->endGame();
+                    juegoActivo = false;
+                }
             });
 
 }

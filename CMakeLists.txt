@@ -25,10 +25,11 @@ qt_add_executable(refactor-chrono-golf
         paginas/ui-game/eventlogwidget.cpp paginas/ui-game/eventlogwidget.h
         game/levelmanager.cpp
         game/levelmanager.h
+        game/scene.cpp
+        game/scene.h
         game/scenes/nivel1scene.cpp
         game/scenes/nivel1scene.h
         paginas/ui-game/basehud.h paginas/ui-game/basehud.cpp
-        paginas/ui-game/level1hud.h paginas/ui-game/level1hud.cpp
         paginas/ui-game/level1hud.h paginas/ui-game/level1hud.cpp
         paginas/ui-game/level2hud.h paginas/ui-game/level2hud.cpp
 )

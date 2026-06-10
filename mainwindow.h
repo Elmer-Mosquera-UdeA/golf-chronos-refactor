@@ -38,4 +38,6 @@ private:
     {
         return static_cast<int>(p);
     }
+
+    bool juegoActivo = false;
 };
