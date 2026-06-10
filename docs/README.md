@@ -36,8 +36,7 @@ En la actualizad el viaje de Chronoa está proyectado para dividirse en dos ento
 * **Nivel 2 (El Epicentro):** Una jugabilidad cenital tipo laberinto retro orientada a la exploración, donde el objetivo es evadir patrullas enemigas mientras se recolectan archivos históricos.
 
 > [!NOTE]
-> **Nota de Desarrollo:** Es importante aclarar que los niveles en sí mismos **aún no han sido construidos**. Actualmente el foco del desarrollo está concentrado en la creación de la lógica interna y la interfaz de `GameWidget`, la cual se encargará de gestionar dinámicamente los módulos de contexto correspondientes a cada nivel.
-
+> **Nota de Desarrollo:** Niveles en desarrollo.
 ---
 
 ## Las Reglas del Mundo (Físicas)

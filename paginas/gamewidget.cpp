@@ -25,8 +25,7 @@ GameWidget::GameWidget(QWidget *parent) : QWidget(parent)
 
     initUI();
 
-    connect(levelManager, &LevelManager::sceneChanged,
-            this, &GameWidget::showScene);
+    connect(levelManager, &LevelManager::sceneChanged, this, &GameWidget::showScene);
 }
 
 void GameWidget::initUI()
