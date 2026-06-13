@@ -9,15 +9,21 @@
 ModosGameWidget::ModosGameWidget(QWidget *parent)
     : QWidget(parent)
 {
+    // --- 1. HOJA DE ESTILOS (QSS) MEJORADA ---
     setStyleSheet(R"(
-        /* ModosGameWidget{
-            border-image: url(:/resources/imgs/fondo_oscuro.png)
-                          0 0 0 0 stretch stretch;
+        /* ModosGameWidget {
+            border-image: url(:/resources/imgs/fondo_oscuro.png) 0 0 0 0 stretch stretch;
         } */
 
         QLabel {
             color: white;
             background: transparent;
+        }
+
+        #titleLabel {
+            font-size: 28px;
+            font-weight: bold;
+            color: #E0E0E0;
         }
 
         #profileIcon {
@@ -30,7 +36,8 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
             background-color: #b53333;
             color: white;
             border-radius: 8px;
-            padding: 8px;
+            padding: 8px 15px;
+            font-weight: bold;
         }
 
         #logoutBtn:hover {
@@ -38,26 +45,24 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
         }
 
         #modeButton {
-            border: none;
+            /* El borde transparente evita que el botón cambie de tamaño al hacer hover */
+            border: 3px solid transparent;
             border-radius: 15px;
+            background-color: rgba(255, 255, 255, 10);
         }
 
         #modeButton:hover {
             border: 3px solid rgb(80, 170, 255);
+            background-color: rgba(255, 255, 255, 20);
         }
     )");
-
-
-    // Layout principal
 
     auto *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(30, 20, 30, 20);
     mainLayout->setSpacing(40);
 
-    // Header
-
+    // --- 2. CABECERA (HEADER) ---
     auto *headerLayout = new QHBoxLayout();
-
     headerLayout->addStretch();
 
     auto *profileIcon = new QLabel("👤");
@@ -70,9 +75,9 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
     profileIcon->setFont(iconFont);
 
     auto *userLayout = new QVBoxLayout();
+    userLayout->setSpacing(5);
 
     userName = new QLabel("Nombre de usuario");
-
     QFont userFont;
     userFont.setPointSize(15);
     userFont.setBold(true);
@@ -80,7 +85,7 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
 
     btnExit = new QPushButton("Cerrar sesión");
     btnExit->setObjectName("logoutBtn");
-    btnExit->setMaximumWidth(150);
+    btnExit->setCursor(Qt::PointingHandCursor); // Mejor UX
 
     userLayout->addWidget(userName);
     userLayout->addWidget(btnExit);
@@ -91,55 +96,43 @@ ModosGameWidget::ModosGameWidget(QWidget *parent)
 
     mainLayout->addLayout(headerLayout);
 
-    // Modos de juego
+    // --- 3. TÍTULO PRINCIPAL ---
+    QLabel *titleLabel = new QLabel("Selecciona un modo de juego");
+    titleLabel->setObjectName("titleLabel");
+    titleLabel->setAlignment(Qt::AlignCenter);
+    mainLayout->addWidget(titleLabel);
 
+    // --- 4. MODOS DE JUEGO (REFACTORIZADO CON DRY) ---
     auto *gamesLayout = new QHBoxLayout();
     gamesLayout->setSpacing(50);
-
     gamesLayout->addStretch();
 
-    // ----- Modo 1 -----
+    // Función Lambda para no repetir código al crear modos de juego
+    auto createGameMode = [userFont](const QString& title, const QString& imagePath, QPushButton*& btnRef) {
+        auto *layout = new QVBoxLayout();
 
-    auto *modo1Layout = new QVBoxLayout();
+        QLabel *lblModo = new QLabel(title);
+        lblModo->setAlignment(Qt::AlignCenter);
+        lblModo->setFont(userFont);
 
-    QLabel *lblModo1 = new QLabel("Modo juego 1");
-    lblModo1->setAlignment(Qt::AlignCenter);
-    lblModo1->setFont(userFont);
+        btnRef = new QPushButton();
+        btnRef->setObjectName("modeButton");
+        btnRef->setMinimumSize(400, 400);
+        btnRef->setCursor(Qt::PointingHandCursor); // Mejor UX
 
-    btnJuegoUno = new QPushButton();
-    btnJuegoUno->setObjectName("modeButton");
-    btnJuegoUno->setMinimumSize(400, 400);
+        // Asignar la imagen específica
+        btnRef->setStyleSheet(QString("border-image: url(%1) 0 0 0 0 stretch stretch;").arg(imagePath));
 
-    btnJuegoUno->setStyleSheet(R"(
-        border-image: url(:/imgs/preview-md-uno.png) 0 0 0 0 stretch stretch;
-    )");
+        layout->addWidget(lblModo);
+        layout->addSpacing(20);
+        layout->addWidget(btnRef);
 
-    modo1Layout->addWidget(lblModo1);
-    modo1Layout->addSpacing(20);
-    modo1Layout->addWidget(btnJuegoUno);
+        return layout;
+    };
 
-    // ----- Modo 2 -----
-
-    auto *modo2Layout = new QVBoxLayout();
-
-    QLabel *lblModo2 = new QLabel("Modo juego 2");
-    lblModo2->setAlignment(Qt::AlignCenter);
-    lblModo2->setFont(userFont);
-
-    btnJuegoDos = new QPushButton();
-    btnJuegoDos->setObjectName("modeButton");
-    btnJuegoDos->setMinimumSize(400, 400);
-
-    btnJuegoDos->setStyleSheet(R"(
-        border-image: url(:/imgs/preview-md-dos.png) 0 0 0 0 stretch stretch;
-    )");
-
-    modo2Layout->addWidget(lblModo2);
-    modo2Layout->addSpacing(20);
-    modo2Layout->addWidget(btnJuegoDos);
-
-    gamesLayout->addLayout(modo1Layout);
-    gamesLayout->addLayout(modo2Layout);
+    // Crear modos usando la lambda
+    gamesLayout->addLayout(createGameMode("Modo juego 1", ":/imgs/preview-md-uno.png", btnJuegoUno));
+    gamesLayout->addLayout(createGameMode("Modo juego 2", ":/imgs/preview-md-dos.png", btnJuegoDos));
 
     gamesLayout->addStretch();
 
