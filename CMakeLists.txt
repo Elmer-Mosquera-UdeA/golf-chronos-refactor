@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.19)
 project(refactor-chrono-golf LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Sql Multimedia)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Widgets Sql Multimedia)
 
 set(CMAKE_AUTORCC ON)
 
